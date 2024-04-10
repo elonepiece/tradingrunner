@@ -16,3 +16,4 @@ python-bingx==1.0.0
 scipy==1.12.0
 tzdata==2024.1
 websockets==12.0
+pandas-ta==0.3.14b0
