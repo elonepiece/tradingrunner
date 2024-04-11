@@ -31,4 +31,4 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Deploy docker to github
-      run: devenv container --registry https://ghcr.io/${{ github.repository }} copy processes
+      run: devenv container --registry docker://ghcr.io/${{ github.repository }}/ copy processes
