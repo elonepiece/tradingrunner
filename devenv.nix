@@ -8,7 +8,7 @@
   packages = [ 
     pkgs.poetry
     pkgs.git
-    pkgs.python310      
+    pkgs.python311   
   ];
 
   # https://devenv.sh/scripts/
@@ -18,6 +18,7 @@
     poetry --version
     python --version
     git --version
+    poetry install
   '';
 
   # https://devenv.sh/tests/
@@ -37,7 +38,7 @@
   # pre-commit.hooks.shellcheck.enable = true;
 
   # https://devenv.sh/processes/
-  processes.jupyter.exec = "poetry run jupyter lab";
+  processes.jupyter.exec = "poetry install && poetry run jupyter lab";
   devcontainer.enable = true;
 
   # See full reference at https://devenv.sh/reference/options/
