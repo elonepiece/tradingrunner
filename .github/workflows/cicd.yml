@@ -31,4 +31,4 @@ jobs:
       run: devenv container build processes
 
     - name: Deploy docker to github
-      run: devenv container --registry docker://ghcr.io/${{ github.repository_owner }}/ copy processes
+      run: docker push ghcr.io/elonepiece/processes
