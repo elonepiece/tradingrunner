@@ -1,0 +1,37 @@
+name: "Test"
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: cachix/install-nix-action@v26
+    - uses: cachix/cachix-action@v14
+      with:
+        name: devenv
+    - name: Install devenv.sh
+      run: nix profile install nixpkgs#devenv
+
+    - name: Build the devenv shell and run any pre-commit hooks
+      run: devenv test
+
+    - name: Log in to the Container registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build nix docker processes
+      run: devenv container build processes
+    - name: Copy docker image processes
+      run: devenv container copy processes
+    - name: Tag docker processes
+      run: docker tag processes ghcr.io/elonepiece/processes
+    - name: Deploy docker to github
+      run: docker push ghcr.io/elonepiece/processes
