@@ -30,6 +30,8 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build docker processes
+      run: devenv container build processes
 
     - name: Deploy docker to github
       run: devenv container --registry docker://ghcr.io/${{ github.repository_owner }}/ copy processes
