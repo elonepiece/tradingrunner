@@ -29,6 +29,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build docker processes
       run: devenv container build processes
-
+    - name: Tag docker processes
+      run: docker tag processes ghcr.io/elonepiece/processes
     - name: Deploy docker to github
       run: docker push ghcr.io/elonepiece/processes
