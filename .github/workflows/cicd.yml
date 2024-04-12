@@ -27,8 +27,8 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    - name: Build docker processes
-      run: devenv container build processes
+    - name: Copy docker image processes
+      run: devenv container copy processes
     - name: Tag docker processes
       run: docker tag processes ghcr.io/elonepiece/processes
     - name: Deploy docker to github

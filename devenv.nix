@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  name = "tradingrunner";
   # https://devenv.sh/basics/
   env.LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
 
